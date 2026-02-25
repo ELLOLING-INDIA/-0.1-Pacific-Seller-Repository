@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin – Pacific Seller's</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* Extra admin-only styles */
+.admin-select {
+  background: var(--darker); border: 1px solid var(--border); color: var(--text);
+  padding: 3px 6px; border-radius: 5px; font-size: 11px;
+  font-family: 'Outfit', sans-serif; outline: none; cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<div class="toast" id="toast"></div>
+
+<!-- LOGIN PAGE -->
+<div id="loginPage" style="display:block;">
+  <div class="login-page">
+    <div class="login-card">
+      <div class="login-logo-text" style="margin-bottom:6px;"><span>Pacific</span> Seller's</div>
+      <div style="text-align:center;font-size:11px;color:var(--gray);letter-spacing:2px;text-transform:uppercase;margin-bottom:28px;">Admin Portal</div>
+      <h2 style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--white);margin-bottom:6px;letter-spacing:1px;">Welcome Back</h2>
+      <p style="color:var(--gray);font-size:13px;margin-bottom:22px;">Sign in to access the admin dashboard</p>
+
+      <div class="error-msg-box" id="loginError">Invalid username or password</div>
+
+      <div style="margin-bottom:14px;">
+        <label style="display:block;font-size:11px;font-weight:700;color:var(--gray);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;">Username</label>
+        <input type="text" id="loginUser" placeholder="Enter username" style="width:100%;background:var(--darker);border:1px solid var(--border);color:var(--white);padding:11px 14px;border-radius:9px;font-family:'Outfit',sans-serif;font-size:14px;outline:none;" onkeydown="if(event.key==='Enter')doLogin()">
+      </div>
+      <div style="margin-bottom:22px;">
+        <label style="display:block;font-size:11px;font-weight:700;color:var(--gray);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;">Password</label>
+        <input type="password" id="loginPass" placeholder="Enter password" style="width:100%;background:var(--darker);border:1px solid var(--border);color:var(--white);padding:11px 14px;border-radius:9px;font-family:'Outfit',sans-serif;font-size:14px;outline:none;" onkeydown="if(event.key==='Enter')doLogin()">
+      </div>
+      <button class="btn-primary" onclick="doLogin()">Sign In →</button>
+      <p style="margin-top:16px;text-align:center;">
+        <a href="index.html" class="nav-btn" style="font-size:13px;">← Back to Store</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN PANEL (hidden until login) -->
+<div id="adminPage" style="display:none;">
+  <nav>
+    <div class="nav-logo" style="cursor:default;" id="adminNavLogo"></div>
+    <div class="nav-links">
+      <span style="color:var(--gold);font-size:13px;font-weight:600;">⚙️ Admin Panel</span>
+      <a href="index.html" class="nav-btn">🏠 View Store</a>
+      <button class="nav-btn" onclick="doLogout()">🚪 Logout</button>
+    </div>
+  </nav>
+
+  <div class="admin-container">
+    <!-- SIDEBAR -->
+    <div class="admin-sidebar">
+      <div class="sidebar-section-title">Dashboard</div>
+      <button class="sidebar-btn active" onclick="adminTab('overview', this)">📊 Overview</button>
+      <button class="sidebar-btn" onclick="adminTab('add-product', this)">➕ Add Product</button>
+      <button class="sidebar-btn" onclick="adminTab('products', this)">📦 Products</button>
+      <button class="sidebar-btn" onclick="adminTab('orders', this)">🛒 Orders</button>
+      <button class="sidebar-btn" onclick="adminTab('manufacturers', this)">🏭 Manufacturers</button>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="admin-content">
+
+      <!-- OVERVIEW -->
+      <div class="admin-panel active" id="panel-overview">
+        <div class="admin-header">
+          <div class="admin-title">Dashboard <span>Overview</span></div>
+        </div>
+        <div class="stats-grid" id="statsGrid"></div>
+        <div class="admin-title" style="font-size:18px;margin-bottom:12px;">Recent <span>Activity</span></div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>Type</th><th>Name / ID</th><th>Amount</th><th>Date</th></tr></thead>
+            <tbody id="recentBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ADD PRODUCT -->
+      <div class="admin-panel" id="panel-add-product">
+        <div class="admin-header"><div class="admin-title">Add <span>Product</span></div></div>
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;">
+          <form id="productForm" onsubmit="submitProduct(event)">
+            <div class="admin-form-grid">
+              <div class="admin-form-group"><label>Product Name *</label><input type="text" id="p_name" required placeholder="Product name"></div>
+              <div class="admin-form-group"><label>Category *</label><input type="text" id="p_category" required placeholder="e.g., Electronics"></div>
+              <div class="admin-form-group"><label>Price (₹) *</label><input type="number" id="p_price" required placeholder="0" min="0" step="0.01"></div>
+              <div class="admin-form-group"><label>MRP (₹)</label><input type="number" id="p_mrp" placeholder="0" min="0" step="0.01"></div>
+              <div class="admin-form-group">
+                <label>Rating (tap stars)</label>
+                <div class="star-input" id="starInput">
+                  <span onclick="setRating(1)">★</span><span onclick="setRating(2)">★</span>
+                  <span onclick="setRating(3)">★</span><span onclick="setRating(4)">★</span>
+                  <span onclick="setRating(5)">★</span>
+                </div>
+                <input type="hidden" id="p_rating" value="0">
+              </div>
+              <div class="admin-form-group"><label>Number of Reviews</label><input type="number" id="p_reviews" placeholder="0" min="0"></div>
+              <div class="admin-form-group"><label>Stock Quantity</label><input type="number" id="p_stock" placeholder="0" min="0"></div>
+              <div class="admin-form-group"><label>SKU / Product Code</label><input type="text" id="p_sku" placeholder="PS-001"></div>
+              <div class="admin-form-group admin-form-full"><label>Description *</label><textarea id="p_desc" required rows="3" placeholder="Product description..."></textarea></div>
+              <div class="admin-form-group admin-form-full">
+                <label>Platforms *</label>
+                <div class="checkbox-group">
+                  <label class="checkbox-label"><input type="checkbox" id="p_amazon" value="amazon"> Amazon</label>
+                  <label class="checkbox-label"><input type="checkbox" id="p_flipkart" value="flipkart"> Flipkart</label>
+                  <label class="checkbox-label"><input type="checkbox" id="p_meesho" value="meesho"> Meesho</label>
+                </div>
+              </div>
+              <div class="admin-form-group admin-form-full">
+                <label>Product Image Upload</label>
+                <div class="img-upload-area">
+                  <input type="file" id="p_image" accept="image/*" onchange="previewImage(event)">
+                  <div>📷 Click to upload image</div>
+                  <img class="img-preview-thumb" id="imgPreview">
+                </div>
+              </div>
+              <div class="admin-form-group admin-form-full"><label>Product Image URL (alternative)</label><input type="url" id="p_imageUrl" placeholder="https://example.com/image.jpg"></div>
+              <div class="admin-form-group admin-form-full"><label>Features (one per line)</label><textarea id="p_features" rows="3" placeholder="Feature 1&#10;Feature 2&#10;Feature 3"></textarea></div>
+            </div>
+            <button type="submit" class="btn-primary" style="margin-top:8px;">Add Product →</button>
+            <div class="success-msg-box" id="productSuccess">✅ Product added successfully!</div>
+          </form>
+        </div>
+      </div>
+
+      <!-- PRODUCTS TABLE -->
+      <div class="admin-panel" id="panel-products">
+        <div class="admin-header">
+          <div class="admin-title">All <span>Products</span></div>
+          <div class="export-btns">
+            <button class="btn-export" onclick="exportCSV('products')">📄 CSV</button>
+            <button class="btn-export" onclick="exportExcel('products')">📊 Excel</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>Img</th><th>Name</th><th>Category</th><th>Price</th><th>Rating</th><th>Platforms</th><th>Date</th><th>Action</th></tr></thead>
+            <tbody id="productsTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ORDERS TABLE -->
+      <div class="admin-panel" id="panel-orders">
+        <div class="admin-header">
+          <div class="admin-title">Customer <span>Orders</span></div>
+          <div class="export-btns">
+            <button class="btn-export" onclick="exportCSV('orders')">📄 CSV</button>
+            <button class="btn-export" onclick="exportExcel('orders')">📊 Excel</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>Order ID</th><th>Customer</th><th>Phone</th><th>City</th><th>Items</th><th>Total</th><th>Payment</th><th>Status</th><th>Date</th><th>Action</th></tr></thead>
+            <tbody id="ordersTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- MANUFACTURERS TABLE -->
+      <div class="admin-panel" id="panel-manufacturers">
+        <div class="admin-header">
+          <div class="admin-title">Manufacturer <span>Registrations</span></div>
+          <div class="export-btns">
+            <button class="btn-export" onclick="exportCSV('manufacturers')">📄 CSV</button>
+            <button class="btn-export" onclick="exportExcel('manufacturers')">📊 Excel</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>Company</th><th>Contact</th><th>Email</th><th>Phone</th><th>GST</th><th>Turnover</th><th>Categories</th><th>Platforms</th><th>Date</th><th>Action</th></tr></thead>
+            <tbody id="mfrTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </div><!-- end admin-content -->
+  </div><!-- end admin-container -->
+</div><!-- end adminPage -->
+
+<script src="app.js"></script>
+<script>
+// ===== AUTH =====
+const ADMIN_USER = 'PacificAdmin';
+const ADMIN_PASS = 'PacificAdmin@1705';
+let isLoggedIn = false;
+let currentRating = 0;
+
+function doLogin() {
+  const u = document.getElementById('loginUser').value;
+  const p = document.getElementById('loginPass').value;
+  if (u === ADMIN_USER && p === ADMIN_PASS) {
+    isLoggedIn = true;
+    document.getElementById('loginError').classList.remove('show');
+    showAdminPanel();
+  } else {
+    document.getElementById('loginError').classList.add('show');
+  }
+}
+
+function doLogout() {
+  isLoggedIn = false;
+  document.getElementById('adminPage').style.display = 'none';
+  document.getElementById('loginPage').style.display = 'block';
+  document.getElementById('loginUser').value = '';
+  document.getElementById('loginPass').value = '';
+}
+
+function showAdminPanel() {
+  document.getElementById('loginPage').style.display = 'none';
+  document.getElementById('adminPage').style.display = 'block';
+  document.getElementById('adminNavLogo').innerHTML = navLogoSVG();
+  renderAdmin();
+}
+
+// ===== TABS =====
+function adminTab(tab, btn) {
+  document.querySelectorAll('.admin-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.sidebar-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + tab).classList.add('active');
+  if (btn) btn.classList.add('active');
+  if (tab === 'products') renderProductsTable();
+  if (tab === 'orders') renderOrdersTable();
+  if (tab === 'manufacturers') renderMfrTable();
+  if (tab === 'overview') renderOverview();
+}
+
+function renderAdmin() {
+  renderOverview();
+  renderProductsTable();
+  renderOrdersTable();
+  renderMfrTable();
+}
+
+// ===== OVERVIEW =====
+function renderOverview() {
+  const prods = getDB('products');
+  const mfrs = getDB('manufacturers');
+  const orders = getDB('orders');
+  const rev = orders.reduce((s, o) => s + o.total, 0);
+  document.getElementById('statsGrid').innerHTML = `
+    <div class="stat-card"><div class="stat-number">${prods.length}</div><div class="stat-label">Total Products</div></div>
+    <div class="stat-card"><div class="stat-number">${orders.length}</div><div class="stat-label">Total Orders</div></div>
+    <div class="stat-card"><div class="stat-number">₹${rev.toLocaleString()}</div><div class="stat-label">Revenue (COD)</div></div>
+    <div class="stat-card"><div class="stat-number">${mfrs.length}</div><div class="stat-label">Manufacturers</div></div>
+    <div class="stat-card"><div class="stat-number">${orders.filter(o => o.status === 'Pending').length}</div><div class="stat-label">Pending Orders</div></div>
+    <div class="stat-card"><div class="stat-number">${prods.reduce((s, p) => s + (p.reviews || 0), 0).toLocaleString()}</div><div class="stat-label">Total Reviews</div></div>`;
+
+  const recent = [
+    ...orders.slice(-3).map(o => ({ type: 'Order', name: o.id + ' – ' + o.name, amount: '₹' + o.total, date: o.date })),
+    ...prods.slice(-2).map(p => ({ type: 'Product', name: p.name, amount: '₹' + p.price, date: p.date }))
+  ].sort((a, b) => b.date > a.date ? 1 : -1);
+
+  document.getElementById('recentBody').innerHTML = recent.map(r =>
+    `<tr><td>${r.type}</td><td>${r.name}</td><td style="color:var(--gold)">${r.amount}</td><td>${r.date}</td></tr>`
+  ).join('') || '<tr><td colspan="4" style="text-align:center;padding:24px;color:var(--gray)">No recent activity</td></tr>';
+}
+
+// ===== PRODUCTS TABLE =====
+function renderProductsTable() {
+  document.getElementById('productsTableBody').innerHTML = getDB('products').map(p => `<tr>
+    <td>${(p.image || p.imageUrl) ? `<img class="img-thumb" src="${p.image || p.imageUrl}" onerror="this.style.display='none'">` : '—'}</td>
+    <td style="font-weight:600;color:var(--white)">${p.name}</td>
+    <td>${p.category}</td>
+    <td style="color:var(--gold)">₹${(p.price || 0).toLocaleString()}</td>
+    <td>⭐ ${p.rating || 0}</td>
+    <td style="font-size:11px">${(p.platforms || []).join(', ')}</td>
+    <td>${p.date || ''}</td>
+    <td><button class="action-btn danger" onclick="deleteProduct(${p.id})">Delete</button></td>
+  </tr>`).join('') || '<tr><td colspan="8" style="text-align:center;padding:36px;color:var(--gray)">No products yet</td></tr>';
+}
+
+// ===== ORDERS TABLE =====
+function renderOrdersTable() {
+  document.getElementById('ordersTableBody').innerHTML = getDB('orders').map(o => `<tr>
+    <td style="font-weight:700;color:var(--gold);white-space:nowrap">${o.id}</td>
+    <td style="color:var(--white);font-weight:600">${o.name}</td>
+    <td>${o.phone}</td>
+    <td>${(o.billing && o.billing.city) || '—'}</td>
+    <td style="font-size:11px;max-width:140px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${o.items}</td>
+    <td style="color:var(--gold);font-weight:700">₹${o.total.toLocaleString()}</td>
+    <td><span style="color:var(--green);font-size:11px;font-weight:700">COD</span></td>
+    <td><span class="status-badge ${o.status === 'Pending' ? 'status-pending' : o.status === 'Delivered' ? 'status-delivered' : 'status-confirmed'}">${o.status}</span></td>
+    <td>${o.date}</td>
+    <td style="display:flex;gap:4px;flex-wrap:nowrap;">
+      <select class="admin-select" onchange="updateOrderStatus('${o.id}', this.value)">
+        <option ${o.status === 'Pending' ? 'selected' : ''}>Pending</option>
+        <option ${o.status === 'Confirmed' ? 'selected' : ''}>Confirmed</option>
+        <option ${o.status === 'Delivered' ? 'selected' : ''}>Delivered</option>
+      </select>
+      <button class="action-btn danger" onclick="deleteOrder('${o.id}')">Del</button>
+    </td>
+  </tr>`).join('') || '<tr><td colspan="10" style="text-align:center;padding:36px;color:var(--gray)">No orders yet</td></tr>';
+}
+
+function updateOrderStatus(id, status) {
+  const orders = getDB('orders');
+  const o = orders.find(x => x.id === id);
+  if (o) { o.status = status; setDB('orders', orders); renderOrdersTable(); renderOverview(); showToast('✅ Status updated'); }
+}
+
+// ===== MANUFACTURERS TABLE =====
+function renderMfrTable() {
+  document.getElementById('mfrTableBody').innerHTML = getDB('manufacturers').map(m => `<tr>
+    <td style="font-weight:600;color:var(--white)">${m.company}</td>
+    <td>${m.contact}</td>
+    <td>${m.email}</td>
+    <td>${m.phone}</td>
+    <td>${m.gst || '—'}</td>
+    <td>${m.turnover || '—'}</td>
+    <td>${m.categories}</td>
+    <td style="font-size:11px">${m.platforms || '—'}</td>
+    <td>${m.date}</td>
+    <td><button class="action-btn danger" onclick="deleteMfr(${m.id})">Delete</button></td>
+  </tr>`).join('') || '<tr><td colspan="10" style="text-align:center;padding:36px;color:var(--gray)">No registrations yet</td></tr>';
+}
+
+// ===== DELETE =====
+function deleteProduct(id) {
+  if (!confirm('Delete this product?')) return;
+  setDB('products', getDB('products').filter(p => p.id != id));
+  renderProductsTable(); renderOverview(); showToast('🗑️ Deleted');
+}
+function deleteOrder(id) {
+  if (!confirm('Delete this order?')) return;
+  setDB('orders', getDB('orders').filter(o => o.id != id));
+  renderOrdersTable(); renderOverview(); showToast('🗑️ Deleted');
+}
+function deleteMfr(id) {
+  if (!confirm('Delete this registration?')) return;
+  setDB('manufacturers', getDB('manufacturers').filter(m => m.id != id));
+  renderMfrTable(); renderOverview(); showToast('🗑️ Deleted');
+}
+
+// ===== ADD PRODUCT =====
+function setRating(r) {
+  currentRating = r;
+  document.getElementById('p_rating').value = r;
+  document.querySelectorAll('#starInput span').forEach((s, i) => s.classList.toggle('active', i < r));
+}
+
+function previewImage(e) {
+  const file = e.target.files[0]; if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => { const img = document.getElementById('imgPreview'); img.src = ev.target.result; img.style.display = 'block'; };
+  reader.readAsDataURL(file);
+}
+
+function submitProduct(e) {
+  e.preventDefault();
+  const platforms = [];
+  ['p_amazon', 'p_flipkart', 'p_meesho'].forEach(id => { const el = document.getElementById(id); if (el && el.checked) platforms.push(el.value); });
+  if (!platforms.length) { alert('Select at least one platform'); return; }
+  const imgPreview = document.getElementById('imgPreview');
+
+  const save = imgData => {
+    const prods = getDB('products');
+    const newId = prods.length ? Math.max(...prods.map(p => p.id)) + 1 : 1;
+    prods.push({
+      id: newId,
+      name: document.getElementById('p_name').value,
+      category: document.getElementById('p_category').value,
+      price: parseFloat(document.getElementById('p_price').value) || 0,
+      mrp: parseFloat(document.getElementById('p_mrp').value) || 0,
+      desc: document.getElementById('p_desc').value,
+      platforms,
+      rating: parseFloat(document.getElementById('p_rating').value) || 0,
+      reviews: parseInt(document.getElementById('p_reviews').value) || 0,
+      stock: parseInt(document.getElementById('p_stock').value) || 0,
+      sku: document.getElementById('p_sku').value,
+      features: document.getElementById('p_features').value,
+      imageUrl: document.getElementById('p_imageUrl').value,
+      image: imgData || '',
+      date: new Date().toISOString().split('T')[0]
+    });
+    setDB('products', prods);
+    document.getElementById('productSuccess').classList.add('show');
+    document.getElementById('productForm').reset();
+    document.querySelectorAll('#starInput span').forEach(s => s.classList.remove('active'));
+    imgPreview.style.display = 'none';
+    currentRating = 0;
+    setTimeout(() => document.getElementById('productSuccess').classList.remove('show'), 3000);
+    renderProductsTable(); renderOverview(); showToast('✅ Product added!');
+  };
+
+  if (document.getElementById('p_image').files[0] && imgPreview.src && imgPreview.src !== location.href) save(imgPreview.src);
+  else save('');
+}
+
+// ===== EXPORT =====
+function exportCSV(type) {
+  const data = getDB(type); if (!data.length) { showToast('No data to export'); return; }
+  const keys = Object.keys(data[0]).filter(k => k !== 'image');
+  const csv = [keys.join(','), ...data.map(r => keys.map(k => `"${(r[k] || '').toString().replace(/"/g, '""')}"`).join(','))].join('\n');
+  dl(csv, 'text/csv', `pacific_${type}_${new Date().toISOString().split('T')[0]}.csv`);
+  showToast('📄 CSV exported!');
+}
+function exportExcel(type) {
+  const data = getDB(type); if (!data.length) { showToast('No data to export'); return; }
+  const keys = Object.keys(data[0]).filter(k => k !== 'image');
+  let xml = `<?xml version="1.0"?><Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"><Worksheet ss:Name="${type}"><Table>`;
+  xml += `<Row>${keys.map(k => `<Cell><Data ss:Type="String">${k}</Data></Cell>`).join('')}</Row>`;
+  data.forEach(r => { xml += `<Row>${keys.map(k => `<Cell><Data ss:Type="String">${(r[k] || '').toString().replace(/</g, '&lt;').replace(/>/g, '&gt;')}</Data></Cell>`).join('')}</Row>`; });
+  xml += `</Table></Worksheet></Workbook>`;
+  dl(xml, 'application/vnd.ms-excel', `pacific_${type}_${new Date().toISOString().split('T')[0]}.xls`);
+  showToast('📊 Excel exported!');
+}
+function dl(content, type, filename) {
+  const b = new Blob([content], { type });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(b); a.download = filename; a.click();
+}
+</script>
+</body>
+</html>
