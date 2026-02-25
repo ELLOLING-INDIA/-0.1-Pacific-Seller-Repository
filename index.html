@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Affordable Men's Wear & Ecommerce Products Online in India | Pacific Seller's</title>
+    <meta name="description" content="Buy low-price men's wear, fashion, electronics, kitchen and daily-use products online in India. Fast shipping, Cash on Delivery, and trusted marketplace quality from Pacific Seller's.">
+    <meta name="keywords" content="mens wear online india, low price men clothing, affordable t shirts india, ecommerce products india, cash on delivery shopping, shipping across india, amazon seller india, flipkart meesho products">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://pacificsellers.in/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Affordable Men's Wear & Ecommerce Products Online in India">
+    <meta property="og:description" content="Shop low-price men's wear and ecommerce essentials with India-wide shipping and COD.">
+    <meta property="og:url" content="https://pacificsellers.in/">
+    <meta property="og:site_name" content="Pacific Seller's">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Affordable Men's Wear & Ecommerce Products Online in India">
+    <meta name="twitter:description" content="Low-price menswear, trusted ecommerce products, fast shipping and COD across India.">
+    <script type="application/ld+json" id="baseSchema">
+        {
+            "@context": "https://schema.org",
+            "@graph": [{
+                "@type": "Organization",
+                "name": "Pacific Seller's",
+                "url": "https://pacificsellers.in/",
+                "email": "info@pacificsellers.in",
+                "telephone": "+91-73057-92178",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Chennai",
+                    "addressRegion": "Tamil Nadu",
+                    "addressCountry": "IN"
+                }
+            }, {
+                "@type": "WebSite",
+                "name": "Pacific Seller's",
+                "url": "https://pacificsellers.in/",
+                "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": "https://pacificsellers.in/?q={search_term_string}",
+                    "query-input": "required name=search_term_string"
+                }
+            }]
+        }
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="toast" id="toast"></div>
+
+    <!-- PRODUCT MODAL -->
+    <div class="modal-overlay" id="productModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 id="modalTitle">Product Details</h2>
+                <button class="modal-close" onclick="closeModal()">✕</button>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- NAV -->
+    <nav>
+        <a class="nav-logo" href="index.html" id="navLogoHome"></a>
+        <div class="nav-links">
+            <a class="nav-btn active-link" href="index.html">🏠 Products</a>
+            <a class="nav-btn" href="manufacturer.html">Partner With Us</a>
+            <a class="cart-btn" href="cart.html">🛒 Cart <span class="cart-count" id="cartCount">0</span></a>
+        </div>
+    </nav>
+    <!-- HOME ROUTES -->
+    <div class="controls" style="padding-top:14px;padding-bottom:14px;">
+        <a class="nav-btn" href="manufacturer.html">Partner With Us</a>
+        <a class="nav-btn" href="about.html">About Us</a>
+        <a class="nav-btn" href="contact.html">Contact</a>
+        <a class="nav-btn" href="track-order.html">Track Order</a>
+        <a class="nav-btn" href="return-policy.html">Return Policy</a>
+        <a class="nav-btn" href="shipping-info.html">Shipping Info</a>
+        <a class="nav-btn" href="faqs.html">FAQs</a>
+    </div>
+    <!-- HERO -->
+    <div class="hero">
+        <h1 class="hero-tagline"><span>Your Trusted</span> Partner<br>in Retail Growth</h1>
+        <p class="hero-sub">Connecting top manufacturers with Amazon, Flipkart & Meesho marketplaces</p>
+        <div class="hero-badges">
+            <div class="badge">🛒 <span>Amazon</span> Seller</div>
+            <div class="badge">📦 <span>Flipkart</span> Partner</div>
+            <div class="badge">🛍️ <span>Meesho</span> Reseller</div>
+        </div>
+    </div>
+
+    <!-- CONTROLS -->
+    <div class="controls">
+        <div class="search-box">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <input type="text" placeholder="Search products..." id="searchInput" oninput="renderProducts()">
+        </div>
+        <select id="categoryFilter" onchange="renderProducts()"><option value="">All Categories</option></select>
+        <select id="platformFilter" onchange="renderProducts()">
+    <option value="">All Platforms</option>
+    <option value="amazon">Amazon</option>
+    <option value="flipkart">Flipkart</option>
+    <option value="meesho">Meesho</option>
+  </select>
+        <select id="sortFilter" onchange="renderProducts()">
+    <option value="newest">Newest First</option>
+    <option value="price-low">Price: Low to High</option>
+    <option value="price-high">Price: High to Low</option>
+    <option value="rating">Top Rated</option>
+  </select>
+    </div>
+
+    <!-- PRODUCTS -->
+    <div class="products-section">
+        <div class="section-title">Our <span>Products</span></div>
+        <div class="products-grid" id="productsGrid"></div>
+    </div>
+
+    <!-- REVIEWS -->
+    <div class="reviews-section">
+        <div class="reviews-heading">What Our <span>Customers Say</span></div>
+        <div class="marquee-wrap">
+            <div class="marquee-track" id="reviewsTrack"></div>
+        </div>
+    </div>
+
+    <!-- SEO CONTENT -->
+    <section class="products-section" aria-label="Ecommerce and shipping information">
+        <div class="section-title">Affordable <span>Men's Wear & Shipping</span> Across India</div>
+        <div class="checkout-card" style="max-width:1100px;margin:0 auto 22px;">
+            <p style="color:var(--text);line-height:1.7;font-size:14px;margin-bottom:14px;">
+                Pacific Seller's helps customers buy low-price men's wear and daily-use ecommerce products with secure Cash on Delivery and reliable shipping support. We source quality products, optimize pricing, and deliver value-focused shopping similar to top Indian
+                marketplaces.
+            </p>
+            <p style="color:var(--text);line-height:1.7;font-size:14px;">
+                Popular searches we serve include affordable men's t-shirts, budget clothing for men, online men fashion deals in India, and low-price marketplace products with fast dispatch.
+            </p>
+        </div>
+        <div class="checkout-card" style="max-width:1100px;margin:0 auto;">
+            <h2 style="font-size:22px;color:var(--white);margin-bottom:10px;">Shipping & Delivery for Men's Wear Orders</h2>
+            <ul style="color:var(--text);line-height:1.8;padding-left:18px;font-size:14px;">
+                <li>Shipping across major Indian cities and serviceable pin codes.</li>
+                <li>Cash on Delivery available for eligible orders.</li>
+                <li>Free shipping on qualifying cart value.</li>
+                <li>Order confirmation support to ensure smooth doorstep delivery.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="products-section" aria-label="Frequently asked questions">
+        <div class="section-title">Shopping <span>FAQs</span></div>
+        <div style="max-width:1100px;margin:0 auto;">
+            <details class="checkout-card" style="margin-bottom:14px;">
+                <summary style="cursor:pointer;font-weight:700;color:var(--white);">Do you offer low-price men's wear online in India?</summary>
+                <p style="color:var(--text);line-height:1.7;margin-top:10px;">Yes. We list budget-friendly men's wear including t-shirts and fashion essentials with marketplace-style pricing.</p>
+            </details>
+            <details class="checkout-card" style="margin-bottom:14px;">
+                <summary style="cursor:pointer;font-weight:700;color:var(--white);">Is Cash on Delivery available for men's clothing orders?</summary>
+                <p style="color:var(--text);line-height:1.7;margin-top:10px;">Yes. COD is available on eligible locations, so you can pay when your order arrives.</p>
+            </details>
+            <details class="checkout-card">
+                <summary style="cursor:pointer;font-weight:700;color:var(--white);">How fast is shipping for ecommerce products?</summary>
+                <p style="color:var(--text);line-height:1.7;margin-top:10px;">Most serviceable locations receive orders within an estimated 3 to 5 business days.</p>
+            </details>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <div id="footerMount"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script src="orderdata.store.js"></script>
+<script src="app.js"></script>
+    <script>
+        // ===== INIT =====
+        document.getElementById('navLogoHome').innerHTML = navLogoSVG();
+        document.getElementById('footerMount').innerHTML = footerHTML();
+
+        // ===== PRODUCTS =====
+        function renderProducts() {
+            const search = document.getElementById('searchInput').value.toLowerCase();
+            const cat = document.getElementById('categoryFilter').value;
+            const plt = document.getElementById('platformFilter').value;
+            const sort = document.getElementById('sortFilter').value;
+            let prods = getDB('products');
+            if (search) prods = prods.filter(p =>
+                p.name.toLowerCase().includes(search) ||
+                (p.desc || '').toLowerCase().includes(search) ||
+                p.category.toLowerCase().includes(search)
+            );
+            if (cat) prods = prods.filter(p => p.category === cat);
+            if (plt) prods = prods.filter(p => p.platforms && p.platforms.includes(plt));
+            if (sort === 'price-low') prods.sort((a, b) => a.price - b.price);
+            else if (sort === 'price-high') prods.sort((a, b) => b.price - a.price);
+            else if (sort === 'rating') prods.sort((a, b) => b.rating - a.rating);
+            else prods.sort((a, b) => b.id - a.id);
+
+            const grid = document.getElementById('productsGrid');
+            if (!prods.length) {
+                grid.innerHTML = `<div class="no-products"><div class="icon">📦</div><div>No products found</div></div>`;
+                return;
+            }
+            grid.innerHTML = prods.map(p => {
+                        const stars = '★'.repeat(Math.floor(p.rating || 0)) + '☆'.repeat(5 - Math.floor(p.rating || 0));
+                        const imgSrc = p.image || p.imageUrl;
+                        const plats = (p.platforms || []).map(pl => `<span class="platform-tag platform-${pl}">${pl.toUpperCase()}</span>`).join('');
+                        const disc = p.mrp > p.price ? `<span class="product-discount">${Math.round((1 - p.price / p.mrp) * 100)}% off</span>` : '';
+                        return `<div class="product-card">
+      <div class="product-category-tag">${p.category || ''}</div>
+      ${imgSrc ? `<img class="product-img" src="${imgSrc}" alt="${p.name}" onclick="openModal(${p.id})" loading="lazy">` : `<div class="product-img-placeholder" onclick="openModal(${p.id})">🛒</div>`}
+      <div class="product-body">
+        <div class="product-platform">${plats}</div>
+        <div class="product-name" onclick="openModal(${p.id})">${p.name}</div>
+        <div class="product-desc">${p.desc || ''}</div>
+        <div class="product-rating"><span class="stars">${stars}</span><span class="rating-count">${p.rating || 0} (${(p.reviews || 0).toLocaleString()})</span></div>
+        <div class="product-price-row">
+          <span class="product-price">₹${(p.price || 0).toLocaleString()}</span>
+          ${p.mrp > p.price ? `<span class="product-mrp">₹${p.mrp.toLocaleString()}</span>` : ''}
+          ${disc}
+        </div>
+        <div class="card-actions">
+          <button class="btn-cart" onclick="addToCart(${p.id}, event)">+ Add to Cart</button>
+          <button class="btn-buy" onclick="buyNow(${p.id})">Buy Now</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function updateCategories() {
+  const cats = [...new Set(getDB('products').map(p => p.category).filter(Boolean))];
+  const sel = document.getElementById('categoryFilter');
+  const val = sel.value;
+  sel.innerHTML = '<option value="">All Categories</option>' + cats.map(c => `<option value="${c}">${c}</option>`).join('');
+  sel.value = val;
+}
+
+function buyNow(id) {
+  // Store buy-now item and redirect to checkout
+  sessionStorage.setItem('ps_buynow', id);
+  window.location.href = 'checkout.html';
+}
+
+// ===== MODAL =====
+function openModal(id) {
+  const p = getDB('products').find(x => x.id == id);
+  if (!p) return;
+  const stars = '★'.repeat(Math.floor(p.rating || 0)) + '☆'.repeat(5 - Math.floor(p.rating || 0));
+  const plats = (p.platforms || []).map(pl => `<span class="platform-tag platform-${pl}">${pl.toUpperCase()}</span>`).join('');
+  const imgSrc = p.image || p.imageUrl;
+  const features = p.features ? `<div style="margin-top:14px"><div class="detail-label" style="margin-bottom:8px;">Key Features</div>${p.features.split('\n').filter(Boolean).map(f => `<div style="color:var(--text);font-size:13px;padding:5px 0;border-bottom:1px solid var(--border);">✓ ${f}</div>`).join('')}</div>` : '';
+  const disc = p.mrp > p.price ? `<span style="background:rgba(34,197,94,0.1);color:var(--green);font-size:12px;font-weight:700;padding:3px 8px;border-radius:4px;margin-left:8px;">${Math.round((1 - p.price / p.mrp) * 100)}% OFF</span>` : '';
+  document.getElementById('modalTitle').textContent = p.name;
+  document.getElementById('modalBody').innerHTML = `
+    ${imgSrc ? `<img class="modal-img" src="${imgSrc}" alt="${p.name}">` : `<div class="modal-img-ph">🛒</div>`}
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px">${plats}</div>
+    <div class="product-rating" style="margin-bottom:12px"><span class="stars" style="font-size:18px">${stars}</span><span style="font-size:13px;color:var(--gray);margin-left:6px">${p.rating} / 5 (${(p.reviews || 0).toLocaleString()} reviews)</span></div>
+    <p style="color:var(--text);line-height:1.6;margin-bottom:14px;font-size:14px">${p.desc || ''}</p>
+    <div class="detail-row">
+      <div class="detail-item"><div class="detail-label">Price</div><div class="detail-value" style="color:var(--gold)">₹${(p.price || 0).toLocaleString()}${disc}</div></div>
+      ${p.mrp ? `<div class="detail-item"><div class="detail-label">MRP</div><div class="detail-value"><s style="color:var(--gray)">₹${p.mrp.toLocaleString()}</s></div></div>` : ''}
+      <div class="detail-item"><div class="detail-label">Stock</div><div class="detail-value">${p.stock || 'N/A'}</div></div>
+      <div class="detail-item"><div class="detail-label">SKU</div><div class="detail-value">${p.sku || 'N/A'}</div></div>
+    </div>
+    ${features}
+    <div class="modal-actions">
+      <button class="modal-btn-cart" onclick="addToCart(${p.id}, event); closeModal()">+ Add to Cart</button>
+      <button class="modal-btn-buy" onclick="closeModal(); buyNow(${p.id})">Buy Now →</button>
+    </div>`;
+  document.getElementById('productModal').classList.add('open');
+}
+
+function closeModal() { document.getElementById('productModal').classList.remove('open'); }
+document.getElementById('productModal').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
+
+// ===== REVIEWS =====
+function renderReviews() {
+  const track = document.getElementById('reviewsTrack');
+  const all = [...REVIEWS, ...REVIEWS];
+  track.innerHTML = all.map(r => `<div class="review-card">
+    <div class="review-stars">${'★'.repeat(r.stars) + '☆'.repeat(5 - r.stars)}</div>
+    <div class="review-text">"${r.text}"</div>
+    <div class="review-author">${r.author}</div>
+    <div class="review-product">Purchased: ${r.product}</div>
+  </div>`).join('');
+}
+
+function injectProductSchema() {
+  const products = getDB('products');
+  if (!products.length) return;
+  const siteRoot = 'https://pacificsellers.in/';
+  const graph = products.slice(0, 20).map((p, idx) => ({
+    '@type': 'Product',
+    '@id': `${siteRoot}#product-${p.id}`,
+    name: p.name,
+    description: p.desc || '',
+    sku: p.sku || `PS-${p.id}`,
+    category: p.category || 'Ecommerce',
+    image: [p.image || p.imageUrl || `${siteRoot}logo.png`],
+    brand: { '@type': 'Brand', name: "Pacific Seller's" },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: Number(p.rating || 4.0).toFixed(1),
+      reviewCount: Number(p.reviews || 1)
+    },
+    offers: {
+      '@type': 'Offer',
+      priceCurrency: 'INR',
+      price: Number(p.price || 0).toFixed(2),
+      availability: Number(p.stock || 0) > 0 ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+      itemCondition: 'https://schema.org/NewCondition',
+      url: siteRoot,
+      shippingDetails: {
+        '@type': 'OfferShippingDetails',
+        shippingRate: {
+          '@type': 'MonetaryAmount',
+          value: Number(p.price || 0) > 999 ? 0 : 49,
+          currency: 'INR'
+        },
+        shippingDestination: {
+          '@type': 'DefinedRegion',
+          addressCountry: 'IN'
+        }
+      }
+    },
+    position: idx + 1
+  }));
+
+  const faqSchema = {
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: "Do you offer low-price men's wear online in India?",
+        acceptedAnswer: { '@type': 'Answer', text: "Yes. We offer budget-friendly men's wear and fashion essentials with value pricing." }
+      },
+      {
+        '@type': 'Question',
+        name: 'Is Cash on Delivery available?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Yes, Cash on Delivery is available on eligible locations and pin codes.' }
+      },
+      {
+        '@type': 'Question',
+        name: 'What is your delivery timeline?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Estimated delivery is usually between 3 to 5 business days in serviceable areas.' }
+      }
+    ]
+  };
+
+  const schema = document.createElement('script');
+  schema.type = 'application/ld+json';
+  schema.textContent = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'ItemList',
+        name: "Pacific Seller's Ecommerce Product Collection",
+        itemListElement: graph.map((p, i) => ({ '@type': 'ListItem', position: i + 1, item: { '@id': p['@id'] } }))
+      },
+      ...graph,
+      faqSchema
+    ]
+  });
+  document.head.appendChild(schema);
+}
+
+// ===== ON LOAD =====
+window.addEventListener('DOMContentLoaded', () => {
+  updateCategories();
+  renderProducts();
+  renderReviews();
+  injectProductSchema();
+});
+    </script>
+</body>
+
+</html>
+

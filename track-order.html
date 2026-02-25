@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Track Your Order – Pacific Seller's</title>
+<meta name="description" content="Track your Pacific Seller's order status. Enter your Order ID and phone number to check delivery status.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://pacificsellers.in/track-order.html">
+<link rel="stylesheet" href="style.css">
+<style>
+  .track-wrap { max-width: 800px; margin: 0 auto; padding: 60px 40px; }
+  .track-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 40px; margin-bottom: 24px; }
+  .track-title { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--white); letter-spacing: 1px; margin-bottom: 8px; }
+  .track-title span { color: var(--gold); }
+  .track-sub { color: var(--gray); font-size: 14px; margin-bottom: 28px; }
+  .tf-group { margin-bottom: 16px; }
+  .tf-group label { display: block; font-size: 11px; font-weight: 700; color: var(--gray); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
+  .tf-group input { width: 100%; background: var(--darker); border: 1px solid var(--border); color: var(--white); padding: 13px 16px; border-radius: 9px; font-family: 'Outfit', sans-serif; font-size: 15px; outline: none; transition: border-color .2s; letter-spacing: 1px; }
+  .tf-group input:focus { border-color: var(--gold); }
+  .result-card { display: none; }
+  .result-card.show { display: block; }
+  .order-status-bar { display: flex; justify-content: space-between; align-items: center; margin: 32px 0; position: relative; }
+  .order-status-bar::before { content: ''; position: absolute; top: 20px; left: 0; right: 0; height: 2px; background: var(--border); z-index: 0; }
+  .status-step { display: flex; flex-direction: column; align-items: center; gap: 8px; position: relative; z-index: 1; flex: 1; }
+  .step-dot { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; background: var(--darker); border: 2px solid var(--border); }
+  .step-dot.done { background: rgba(34,197,94,0.15); border-color: var(--green); }
+  .step-dot.active { background: rgba(245,197,24,0.15); border-color: var(--gold); }
+  .step-label { font-size: 11px; font-weight: 700; color: var(--gray); text-align: center; letter-spacing: 0.5px; text-transform: uppercase; }
+  .step-label.done { color: var(--green); }
+  .step-label.active { color: var(--gold); }
+  .order-details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 24px; }
+  .od-item { background: var(--darker); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+  .od-label { font-size: 10px; font-weight: 700; color: var(--gray); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+  .od-value { font-size: 14px; font-weight: 600; color: var(--white); }
+  .not-found-msg { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.25); color: #f87171; padding: 16px; border-radius: 10px; text-align: center; font-size: 14px; display: none; }
+  .not-found-msg.show { display: block; }
+  .cod-reminder { background: rgba(245,197,24,0.06); border: 1px solid rgba(245,197,24,0.2); border-radius: 12px; padding: 16px 20px; font-size: 13px; color: var(--text); line-height: 1.6; margin-top: 16px; }
+  .cod-reminder strong { color: var(--gold); }
+  @media (max-width: 600px) {
+    .track-wrap { padding: 40px 16px; }
+    .order-details-grid { grid-template-columns: 1fr; }
+    .order-status-bar { flex-direction: column; gap: 16px; align-items: flex-start; }
+    .order-status-bar::before { display: none; }
+    .status-step { flex-direction: row; gap: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="toast" id="toast"></div>
+
+<nav>
+  <a class="nav-logo" href="index.html" id="navLogo"></a>
+  <div class="nav-links">
+    <a class="nav-btn" href="index.html">🏠 Products</a>
+    <a class="nav-btn" href="manufacturer.html">🏭 Manufacturer</a>
+    <a class="cart-btn" href="cart.html">🛒 Cart <span class="cart-count" id="cartCount">0</span></a>
+  </div>
+</nav>
+
+<div class="hero" style="padding:48px 40px;">
+  <div class="hero-tagline"><span>Track</span> Your Order</div>
+  <p class="hero-sub">Enter your Order ID and registered phone number to view real-time order status.</p>
+</div>
+
+<div class="track-wrap">
+
+  <!-- Search -->
+  <div class="track-card">
+    <div class="track-title">Order <span>Lookup</span></div>
+    <p class="track-sub">Your Order ID starts with "PS" and can be found in your order confirmation. Example: PS12345678</p>
+    <div class="tf-group">
+      <label>Order ID *</label>
+      <input type="text" id="t_orderid" placeholder="e.g. PS12345678" oninput="this.value = this.value.toUpperCase()">
+    </div>
+    <div class="tf-group">
+      <label>Registered Phone Number *</label>
+      <input type="tel" id="t_phone" placeholder="+91 98765 43210">
+    </div>
+    <button class="btn-primary" onclick="trackOrder()" style="margin-top:4px;">Track Order →</button>
+    <div class="not-found-msg" id="notFound">❌ No order found with this Order ID and phone number. Please check and try again.</div>
+  </div>
+
+  <!-- Result -->
+  <div class="track-card result-card" id="trackResult">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:8px;">
+      <div class="track-title" style="margin-bottom:0;">Order <span id="resultOrderId">—</span></div>
+      <span class="status-badge" id="resultStatusBadge" style="font-size:13px;padding:6px 14px;">—</span>
+    </div>
+    <p style="color:var(--gray);font-size:13px;" id="resultDate">Placed on —</p>
+
+    <!-- Status Bar -->
+    <div class="order-status-bar" id="statusBar"></div>
+
+    <!-- Details -->
+    <div class="order-details-grid" id="orderDetailsGrid"></div>
+
+    <div class="cod-reminder">
+      💵 <strong>Cash on Delivery Order</strong> — Please keep the exact amount ready when our delivery agent arrives. You can pay in cash at the door.
+    </div>
+  </div>
+
+  <!-- Info Box -->
+  <div class="track-card" style="background:rgba(245,197,24,0.04);border-color:rgba(245,197,24,0.2);">
+    <div class="track-title" style="font-size:20px;">Need <span>Help?</span></div>
+    <p style="color:var(--gray);font-size:13px;margin-bottom:16px;">If you're having trouble tracking your order or have a delivery concern, reach out to us directly.</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;">
+      <a href="contact.html" class="btn-primary" style="padding:10px 22px;font-size:13px;">📞 Contact Support</a>
+      <a href="index.html" class="btn-outline" style="padding:10px 22px;font-size:13px;">← Continue Shopping</a>
+    </div>
+  </div>
+
+</div>
+
+<div id="footerMount"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script src="orderdata.store.js"></script>
+<script src="app.js"></script>
+<script>
+  document.getElementById('navLogo').innerHTML = navLogoSVG();
+  document.getElementById('footerMount').innerHTML = footerHTML();
+
+  const STATUS_STEPS = ['Pending', 'Confirmed', 'Packed', 'Shipped', 'Delivered'];
+  const STEP_ICONS   = ['🕐', '✅', '📦', '🚚', '🏠'];
+
+  function getStatusIndex(status) {
+    const map = { Pending: 0, Confirmed: 1, Packed: 2, Shipped: 3, Delivered: 4 };
+    return map[status] ?? 0;
+  }
+
+  function trackOrder() {
+    const orderId = document.getElementById('t_orderid').value.trim();
+    const phone   = document.getElementById('t_phone').value.replace(/\D/g, '');
+    document.getElementById('notFound').classList.remove('show');
+    document.getElementById('trackResult').classList.remove('show');
+
+    if (!orderId || !phone) { showToast('⚠️ Please enter Order ID and phone number'); return; }
+
+    const orders = getDB('orders');
+    const order  = orders.find(o => o.id.toUpperCase() === orderId.toUpperCase() && o.phone.replace(/\D/g, '') === phone);
+
+    if (!order) { document.getElementById('notFound').classList.add('show'); return; }
+
+    // Populate result
+    const idx = getStatusIndex(order.status);
+    document.getElementById('resultOrderId').textContent = order.id;
+    document.getElementById('resultDate').textContent = 'Placed on ' + order.date;
+
+    const badgeEl = document.getElementById('resultStatusBadge');
+    badgeEl.textContent = order.status;
+    badgeEl.className = 'status-badge ' + (order.status === 'Pending' ? 'status-pending' : order.status === 'Delivered' ? 'status-delivered' : 'status-confirmed');
+
+    // Status bar
+    document.getElementById('statusBar').innerHTML = STATUS_STEPS.map((step, i) => `
+      <div class="status-step">
+        <div class="step-dot ${i < idx ? 'done' : i === idx ? 'active' : ''}">${i <= idx ? STEP_ICONS[i] : '○'}</div>
+        <div class="step-label ${i < idx ? 'done' : i === idx ? 'active' : ''}">${step}</div>
+      </div>`).join('');
+
+    // Order details
+    const addr = order.shipping || order.billing || {};
+    document.getElementById('orderDetailsGrid').innerHTML = `
+      <div class="od-item"><div class="od-label">Customer</div><div class="od-value">${order.name}</div></div>
+      <div class="od-item"><div class="od-label">Phone</div><div class="od-value">${order.phone}</div></div>
+      <div class="od-item"><div class="od-label">Total Amount</div><div class="od-value" style="color:var(--gold);">₹${order.total.toLocaleString()} (COD)</div></div>
+      <div class="od-item"><div class="od-label">Items Ordered</div><div class="od-value">${order.itemCount || 1} item(s)</div></div>
+      <div class="od-item" style="grid-column:1/-1"><div class="od-label">Delivery Address</div><div class="od-value">${addr.addr1 || ''}${addr.city ? ', ' + addr.city : ''}${addr.state ? ', ' + addr.state : ''}${addr.pin ? ' – ' + addr.pin : ''}</div></div>
+      <div class="od-item" style="grid-column:1/-1"><div class="od-label">Products</div><div class="od-value" style="font-size:13px;">${order.items || '—'}</div></div>`;
+
+    document.getElementById('trackResult').classList.add('show');
+    document.getElementById('trackResult').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // Auto-fill from URL params
+  const params = new URLSearchParams(location.search);
+  if (params.get('id')) { document.getElementById('t_orderid').value = params.get('id'); }
+
+  // Allow pressing Enter
+  document.addEventListener('keydown', e => { if (e.key === 'Enter') trackOrder(); });
+</script>
+<style>
+  .btn-outline { background: none; border: 2px solid var(--gold); color: var(--gold); padding: 13px 28px; border-radius: 10px; font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; text-decoration: none; display: inline-block; transition: all .2s; }
+  .btn-outline:hover { background: var(--gold); color: var(--black); }
+</style>
+</body>
+</html>

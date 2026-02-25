@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQs – Pacific Seller's | Frequently Asked Questions</title>
+<meta name="description" content="Frequently asked questions about shopping at Pacific Seller's. Learn about COD orders, returns, shipping, manufacturer partnerships and more.">
+<meta name="keywords" content="pacific sellers faq, ecommerce faq india, cod order questions, shipping faq, return faq india">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://pacificsellers.in/faqs.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"Is Cash on Delivery available?","acceptedAnswer":{"@type":"Answer","text":"Yes, COD is available on all serviceable pin codes across India. Pay in cash when your order arrives."}},
+    {"@type":"Question","name":"What is the delivery time?","acceptedAnswer":{"@type":"Answer","text":"Estimated delivery is 3–5 business days across most of India. Metro cities may receive orders in 3 days."}},
+    {"@type":"Question","name":"How do I return a product?","acceptedAnswer":{"@type":"Answer","text":"Contact us within 7 days of delivery via call or email with your order ID and product photos. We will arrange a pickup."}},
+    {"@type":"Question","name":"Is there free shipping?","acceptedAnswer":{"@type":"Answer","text":"Yes, free shipping is available on all orders above ₹999 across India."}}
+  ]
+}
+</script>
+<link rel="stylesheet" href="style.css">
+<style>
+  .faq-wrap { max-width: 900px; margin: 0 auto; padding: 60px 40px; }
+  .faq-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px; }
+  .faq-tab { background: var(--darker); border: 1px solid var(--border); color: var(--gray); padding: 8px 18px; border-radius: 8px; font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; transition: all .2s; }
+  .faq-tab:hover, .faq-tab.active { background: rgba(245,197,24,0.1); border-color: var(--gold); color: var(--gold); }
+  .faq-group { display: none; }
+  .faq-group.active { display: block; }
+  .faq-group-title { font-family: 'Bebas Neue', sans-serif; font-size: 24px; color: var(--white); letter-spacing: 1px; margin-bottom: 20px; }
+  .faq-group-title span { color: var(--gold); }
+  .faq-item { background: var(--card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 12px; overflow: hidden; transition: border-color .2s; }
+  .faq-item:hover { border-color: rgba(245,197,24,0.3); }
+  .faq-item.open { border-color: rgba(245,197,24,0.5); }
+  .faq-q { padding: 18px 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+  .faq-q-text { font-size: 14px; font-weight: 700; color: var(--white); line-height: 1.4; }
+  .faq-icon { font-size: 18px; color: var(--gold); flex-shrink: 0; transition: transform .25s; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+  .faq-a { max-height: 0; overflow: hidden; transition: max-height .3s ease; }
+  .faq-item.open .faq-a { max-height: 500px; }
+  .faq-a-inner { padding: 0 20px 18px; color: var(--text); font-size: 14px; line-height: 1.7; border-top: 1px solid var(--border); padding-top: 14px; margin-top: -1px; }
+  .faq-a-inner a { color: var(--gold); text-decoration: none; }
+  .faq-a-inner a:hover { text-decoration: underline; }
+  .faq-search { position: relative; margin-bottom: 28px; }
+  .faq-search input { width: 100%; background: var(--card); border: 1px solid var(--border); color: var(--white); padding: 13px 18px 13px 46px; border-radius: 12px; font-family: 'Outfit', sans-serif; font-size: 14px; outline: none; transition: border-color .2s; }
+  .faq-search input:focus { border-color: var(--gold); }
+  .faq-search svg { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--gray); }
+  .still-need { background: linear-gradient(135deg, rgba(245,197,24,0.07), transparent); border: 1px solid rgba(245,197,24,0.2); border-radius: 16px; padding: 36px; text-align: center; margin-top: 40px; }
+  .still-need h3 { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--white); letter-spacing: 1px; margin-bottom: 8px; }
+  .still-need h3 span { color: var(--gold); }
+  .still-need p { color: var(--gray); font-size: 14px; margin-bottom: 20px; }
+  .still-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  @media (max-width: 600px) { .faq-wrap { padding: 40px 16px; } }
+</style>
+</head>
+<body>
+
+<div class="toast" id="toast"></div>
+
+<nav>
+  <a class="nav-logo" href="index.html" id="navLogo"></a>
+  <div class="nav-links">
+    <a class="nav-btn" href="index.html">🏠 Products</a>
+    <a class="nav-btn" href="manufacturer.html">🏭 Manufacturer</a>
+    <a class="cart-btn" href="cart.html">🛒 Cart <span class="cart-count" id="cartCount">0</span></a>
+  </div>
+</nav>
+
+<div class="hero" style="padding:48px 40px;">
+  <div class="hero-tagline">Frequently Asked <span>Questions</span></div>
+  <p class="hero-sub">Find quick answers to the most common questions about shopping, shipping, returns and partnerships.</p>
+</div>
+
+<div class="faq-wrap">
+
+  <!-- Search -->
+  <div class="faq-search">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input type="text" id="faqSearch" placeholder="Search questions..." oninput="filterFAQ()">
+  </div>
+
+  <!-- Tabs -->
+  <div class="faq-tabs">
+    <button class="faq-tab active" onclick="switchTab('orders',this)">🛒 Orders</button>
+    <button class="faq-tab" onclick="switchTab('shipping',this)">🚚 Shipping</button>
+    <button class="faq-tab" onclick="switchTab('returns',this)">↩️ Returns</button>
+    <button class="faq-tab" onclick="switchTab('payment',this)">💵 Payment</button>
+    <button class="faq-tab" onclick="switchTab('products',this)">📦 Products</button>
+    <button class="faq-tab" onclick="switchTab('manufacturer',this)">🏭 Manufacturers</button>
+  </div>
+
+  <!-- Orders -->
+  <div class="faq-group active" id="faq-orders">
+    <div class="faq-group-title">Order <span>Questions</span></div>
+    <div id="faqList-orders">
+    </div>
+  </div>
+
+  <!-- Shipping -->
+  <div class="faq-group" id="faq-shipping">
+    <div class="faq-group-title">Shipping <span>Questions</span></div>
+    <div id="faqList-shipping"></div>
+  </div>
+
+  <!-- Returns -->
+  <div class="faq-group" id="faq-returns">
+    <div class="faq-group-title">Returns & <span>Refunds</span></div>
+    <div id="faqList-returns"></div>
+  </div>
+
+  <!-- Payment -->
+  <div class="faq-group" id="faq-payment">
+    <div class="faq-group-title">Payment <span>Questions</span></div>
+    <div id="faqList-payment"></div>
+  </div>
+
+  <!-- Products -->
+  <div class="faq-group" id="faq-products">
+    <div class="faq-group-title">Product <span>Questions</span></div>
+    <div id="faqList-products"></div>
+  </div>
+
+  <!-- Manufacturer -->
+  <div class="faq-group" id="faq-manufacturer">
+    <div class="faq-group-title">Manufacturer <span>Partnership</span></div>
+    <div id="faqList-manufacturer"></div>
+  </div>
+
+  <!-- Still need help -->
+  <div class="still-need">
+    <h3>Still Need <span>Help?</span></h3>
+    <p>Can't find your answer here? Our support team is available Mon–Sat, 9AM–6PM.</p>
+    <div class="still-btns">
+      <a href="contact.html" class="btn-primary">📞 Contact Support</a>
+      <a href="track-order.html" style="background:none;border:2px solid var(--gold);color:var(--gold);padding:13px 24px;border-radius:10px;font-family:'Outfit',sans-serif;font-size:14px;font-weight:700;text-decoration:none;transition:all .2s;" onmouseover="this.style.background='var(--gold)';this.style.color='var(--black)'" onmouseout="this.style.background='none';this.style.color='var(--gold)'">📦 Track Order</a>
+    </div>
+  </div>
+
+</div>
+
+<div id="footerMount"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script src="orderdata.store.js"></script>
+<script src="app.js"></script>
+<script>
+document.getElementById('navLogo').innerHTML = navLogoSVG();
+document.getElementById('footerMount').innerHTML = footerHTML();
+
+const FAQ_DATA = {
+  orders: [
+    { q: "How do I place an order?", a: "Browse our products on the <a href='index.html'>Products page</a>, click 'Add to Cart' or 'Buy Now', and complete checkout with your delivery details. We only accept Cash on Delivery." },
+    { q: "Can I cancel my order after placing it?", a: "Orders can be cancelled within 2 hours of placement by calling us at +91 73057 92178. After 2 hours, the order enters packing and cannot be cancelled." },
+    { q: "How do I track my order?", a: "Use our <a href='track-order.html'>Order Tracking</a> page. Enter your Order ID (starting with 'PS') and registered phone number to view real-time status." },
+    { q: "What if I didn't receive an order confirmation?", a: "Our logistics team will call you on your registered number to confirm. If you don't receive a call within 24 hours, contact us at info@pacificsellers.in." },
+    { q: "Can I modify my order after placing it?", a: "Order modifications (address, quantity) can be made within 2 hours by contacting our support team. After dispatch, changes are not possible." },
+    { q: "Is there a minimum order value?", a: "No minimum order value. However, orders below ₹999 attract a ₹49 shipping fee. Orders above ₹999 get free shipping." },
+    { q: "What is my Order ID?", a: "Your Order ID is a unique code starting with 'PS' followed by 8 digits (e.g. PS12345678). It is shown on the Thank You page after successful order placement." }
+  ],
+  shipping: [
+    { q: "How long does delivery take?", a: "Most orders are delivered within 3–5 business days. Metro cities typically receive orders in 3 days. Remote areas may take 5–8 days." },
+    { q: "Do you offer free shipping?", a: "Yes! Free shipping is available on all orders above ₹999. Orders below ₹999 have a flat ₹49 shipping fee." },
+    { q: "Do you ship across all of India?", a: "We ship to 18,000+ pin codes across India including all major states and union territories. Some very remote or island areas may have limited serviceability." },
+    { q: "Will the delivery agent call before arriving?", a: "Yes, our delivery agent will call you 30–60 minutes before arriving at your address. Please keep your phone available." },
+    { q: "What happens if I miss the delivery?", a: "The agent will make 2 delivery attempts. If both fail, the order is returned to our warehouse. Contact us to reschedule at no extra charge for the first re-delivery." },
+    { q: "Can I change my delivery address after ordering?", a: "Address changes are possible within 2 hours of placing the order. Contact our support team immediately. After dispatch, address changes are not possible." },
+    { q: "Do you ship internationally?", a: "Currently, we only ship within India. International shipping is not available at this time." }
+  ],
+  returns: [
+    { q: "What is your return window?", a: "We accept returns within 7 days from the date of delivery for defective, damaged or incorrectly delivered products." },
+    { q: "How do I initiate a return?", a: "Call us at +91 73057 92178 or email info@pacificsellers.in with your Order ID and photos of the issue. We will arrange a pickup within 2 business days." },
+    { q: "Can I return a product that I don't like?", a: "We accept returns only for defective, damaged, or wrong products. Change-of-mind returns are not accepted unless the product is unopened and in original packaging." },
+    { q: "When will I get my refund?", a: "After we receive and inspect the returned item, refunds are processed within 5–7 business days via bank transfer or UPI." },
+    { q: "Can I get an exchange instead of a refund?", a: "Yes. If you prefer an exchange (e.g. different size or colour), let us know when initiating the return. Exchanges are processed faster than refunds." },
+    { q: "What products cannot be returned?", a: "Used or washed items, items without original packaging, personal care products (opened), and items explicitly marked as non-returnable cannot be returned." },
+    { q: "I received a damaged product. What do I do?", a: "Take photos immediately and call us or WhatsApp the photos to +91 73057 92178 within 48 hours of delivery. We will arrange a replacement or full refund." }
+  ],
+  payment: [
+    { q: "Do you accept online payment?", a: "Currently, we only accept Cash on Delivery (COD). No online payment, cards, or UPI at checkout." },
+    { q: "What is Cash on Delivery?", a: "COD means you pay in cash when the delivery agent brings your order to your door. No advance payment is required. Keep the exact amount ready." },
+    { q: "Is COD available everywhere?", a: "COD is available on most serviceable pin codes across India. A few remote areas may have COD restrictions — you will be notified at checkout if your area is affected." },
+    { q: "What if I don't have exact change?", a: "Our delivery agents try to carry change, but we recommend keeping the exact amount ready to ensure a smooth delivery experience." },
+    { q: "Is my order data secure?", a: "Yes. We store only the minimum necessary information for order fulfilment and delivery. No payment card data is collected since we are COD only." },
+    { q: "Will I receive a payment receipt?", a: "Our delivery agent provides a physical receipt. A digital copy can be requested by calling our support team after delivery." }
+  ],
+  products: [
+    { q: "Are your products genuine?", a: "Yes. All products listed on Pacific Seller's are sourced directly from verified Indian manufacturers and are 100% genuine." },
+    { q: "How do I know the product quality before buying?", a: "Each product has detailed descriptions, high-quality photos, ratings, and customer reviews. You can also view the product details by clicking on any product card." },
+    { q: "Do you sell branded products?", a: "We primarily sell products from our manufacturing partners — quality-verified and often better than branded alternatives at a fraction of the price." },
+    { q: "What if the product I want is out of stock?", a: "If a product is low on stock, it will be indicated on the product card. Contact us and we'll notify you when it's back in stock." },
+    { q: "Can I request a product that is not listed?", a: "Yes. Contact us with your requirement and we'll check with our manufacturing partners if it can be sourced." },
+    { q: "How are products listed on the site?", a: "Products are added and managed by our admin team. Manufacturers can apply to list their products by filling our <a href='manufacturer.html'>Manufacturer Registration</a> form." }
+  ],
+  manufacturer: [
+    { q: "How do I partner with Pacific Seller's?", a: "Fill out our <a href='manufacturer.html'>Manufacturer Registration</a> form with your company details and product categories. Our team will contact you within 2 business days." },
+    { q: "What types of manufacturers do you work with?", a: "We work with manufacturers across all categories including fashion, electronics, kitchen, home décor, sports, beauty, and more. Both small and large manufacturers are welcome." },
+    { q: "Is there a fee to list products?", a: "Contact our team to discuss the onboarding model. We work on a partnership basis with flexible terms based on your product category and volume." },
+    { q: "Which marketplaces can you list my products on?", a: "We can list your products on Amazon, Flipkart, and Meesho — all three simultaneously or on your preferred platform." },
+    { q: "How quickly can my products be listed?", a: "After partnership is confirmed and product details are submitted, we typically have products live within 5–10 business days depending on catalog complexity." },
+    { q: "Do you manage returns and customer service?", a: "Yes. We handle the entire e-commerce operations including customer queries, returns, reviews, and after-sales service on your behalf." },
+    { q: "Do you require GST registration?", a: "Yes. A valid GST number is required to list products on Amazon and Flipkart. We can guide you through registration if needed." }
+  ]
+};
+
+function renderFAQs() {
+  Object.keys(FAQ_DATA).forEach(cat => {
+    const container = document.getElementById('faqList-' + cat);
+    if (!container) return;
+    container.innerHTML = FAQ_DATA[cat].map((item, i) => `
+      <div class="faq-item" id="faq-${cat}-${i}">
+        <div class="faq-q" onclick="toggleFAQ('${cat}-${i}')">
+          <span class="faq-q-text">${item.q}</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">${item.a}</div></div>
+      </div>`).join('');
+  });
+}
+
+function toggleFAQ(id) {
+  const el = document.getElementById('faq-' + id);
+  if (!el) return;
+  el.classList.toggle('open');
+}
+
+function switchTab(cat, btn) {
+  document.querySelectorAll('.faq-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.faq-group').forEach(g => g.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('faq-' + cat).classList.add('active');
+  document.getElementById('faqSearch').value = '';
+}
+
+function filterFAQ() {
+  const q = document.getElementById('faqSearch').value.toLowerCase().trim();
+  if (!q) {
+    // Show all in active tab
+    document.querySelectorAll('.faq-item').forEach(el => el.style.display = '');
+    return;
+  }
+  // Search all categories
+  document.querySelectorAll('.faq-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.faq-group').forEach(g => { g.classList.add('active'); });
+  document.querySelectorAll('.faq-item').forEach(el => {
+    const text = el.textContent.toLowerCase();
+    el.style.display = text.includes(q) ? '' : 'none';
+  });
+}
+
+renderFAQs();
+</script>
+</body>
+</html>

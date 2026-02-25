@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shipping Information – Pacific Seller's | India-Wide Delivery</title>
+<meta name="description" content="Pacific Seller's ships across India with Cash on Delivery. Free shipping on orders above ₹999. Estimated delivery 3–5 business days.">
+<meta name="keywords" content="shipping india ecommerce, cod delivery india, free shipping online shopping, pacific sellers delivery">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://pacificsellers.in/shipping-info.html">
+<link rel="stylesheet" href="style.css">
+<style>
+  .ship-wrap { max-width: 1000px; margin: 0 auto; padding: 60px 40px; }
+  .ship-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 32px; margin-bottom: 20px; }
+  .ship-card h2 { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--white); letter-spacing: 1px; margin-bottom: 14px; }
+  .ship-card h2 span { color: var(--gold); }
+  .ship-card p { color: var(--text); font-size: 14px; line-height: 1.8; margin-bottom: 10px; }
+  .ship-highlights { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin-bottom: 32px; }
+  .ship-hl { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 22px 18px; text-align: center; border-top: 3px solid var(--gold); }
+  .ship-hl .sh-icon { font-size: 36px; margin-bottom: 10px; }
+  .ship-hl .sh-title { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+  .ship-hl .sh-desc { font-size: 12px; color: var(--gray); line-height: 1.4; }
+  .rate-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .rate-table th { background: var(--darker); color: var(--gray); font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 12px 14px; text-align: left; border-bottom: 1px solid var(--border); }
+  .rate-table td { padding: 12px 14px; border-bottom: 1px solid rgba(42,42,42,0.5); color: var(--text); }
+  .rate-table tr:last-child td { border-bottom: none; }
+  .rate-table tr:hover td { background: rgba(245,197,24,0.02); }
+  .free-tag { background: rgba(34,197,94,0.1); color: var(--green); border: 1px solid rgba(34,197,94,0.3); padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; }
+  .timeline-ship { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 14px; }
+  .tls-card { background: var(--darker); border: 1px solid var(--border); border-radius: 12px; padding: 18px; text-align: center; position: relative; }
+  .tls-card::before { content: attr(data-day); position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: var(--gold); color: var(--black); font-size: 10px; font-weight: 800; padding: 2px 10px; border-radius: 20px; white-space: nowrap; }
+  .tls-icon { font-size: 28px; margin-bottom: 8px; }
+  .tls-title { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+  .tls-desc { font-size: 11px; color: var(--gray); line-height: 1.4; }
+  .zone-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
+  .zone-card { background: var(--darker); border: 1px solid var(--border); border-radius: 12px; padding: 18px; }
+  .zone-name { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+  .zone-cities { font-size: 12px; color: var(--gray); line-height: 1.6; }
+  .zone-days { font-size: 12px; color: var(--gold); font-weight: 700; margin-top: 6px; }
+  @media (max-width: 600px) {
+    .ship-wrap { padding: 40px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="toast" id="toast"></div>
+
+<nav>
+  <a class="nav-logo" href="index.html" id="navLogo"></a>
+  <div class="nav-links">
+    <a class="nav-btn" href="index.html">🏠 Products</a>
+    <a class="nav-btn" href="manufacturer.html">🏭 Manufacturer</a>
+    <a class="cart-btn" href="cart.html">🛒 Cart <span class="cart-count" id="cartCount">0</span></a>
+  </div>
+</nav>
+
+<div class="hero" style="padding:48px 40px;">
+  <div class="hero-tagline"><span>Shipping</span> Information</div>
+  <p class="hero-sub">India-wide delivery with Cash on Delivery. Free shipping on orders above ₹999. Delivered in 3–5 business days.</p>
+  <div class="hero-badges">
+    <div class="badge">🚚 <span>India-wide</span> Delivery</div>
+    <div class="badge">💵 <span>COD</span> Available</div>
+    <div class="badge">🎉 Free Shipping <span>₹999+</span></div>
+  </div>
+</div>
+
+<div class="ship-wrap">
+
+  <!-- Highlights -->
+  <div class="ship-highlights">
+    <div class="ship-hl"><div class="sh-icon">🆓</div><div class="sh-title">Free Shipping</div><div class="sh-desc">On all orders above ₹999 across India</div></div>
+    <div class="ship-hl"><div class="sh-icon">💵</div><div class="sh-title">Cash on Delivery</div><div class="sh-desc">Pay in cash when your order arrives</div></div>
+    <div class="ship-hl"><div class="sh-icon">⚡</div><div class="sh-title">Fast Dispatch</div><div class="sh-desc">Orders packed within 24 hours</div></div>
+    <div class="ship-hl"><div class="sh-icon">🗺️</div><div class="sh-title">Pan India</div><div class="sh-desc">18,000+ pin codes served</div></div>
+    <div class="ship-hl"><div class="sh-icon">📦</div><div class="sh-title">Secure Packaging</div><div class="sh-desc">Every item packed with care</div></div>
+  </div>
+
+  <!-- Rates -->
+  <div class="ship-card">
+    <h2>Shipping <span>Rates</span></h2>
+    <div style="background:var(--darker);border:1px solid var(--border);border-radius:12px;overflow:hidden;">
+      <table class="rate-table">
+        <thead><tr><th>Order Value</th><th>Shipping Charge</th><th>Estimated Delivery</th></tr></thead>
+        <tbody>
+          <tr><td>Below ₹500</td><td>₹49</td><td>3–5 Business Days</td></tr>
+          <tr><td>₹500 – ₹999</td><td>₹49</td><td>3–5 Business Days</td></tr>
+          <tr><td>₹999 and above</td><td><span class="free-tag">FREE</span></td><td>3–5 Business Days</td></tr>
+          <tr><td>Remote / Special Area</td><td>₹99</td><td>5–8 Business Days</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="color:var(--gray);font-size:12px;margin-top:10px;margin-bottom:0;">* Remote areas are determined by our logistics partner's pin code serviceable list. If your pin code is unserviceable, you'll be notified before order confirmation.</p>
+  </div>
+
+  <!-- Timeline -->
+  <div class="ship-card">
+    <h2>Delivery <span>Timeline</span></h2>
+    <div class="timeline-ship" style="margin-top:20px;">
+      <div class="tls-card" data-day="Day 0">
+        <div class="tls-icon">🛒</div>
+        <div class="tls-title">Order Placed</div>
+        <div class="tls-desc">You place your order and we confirm it</div>
+      </div>
+      <div class="tls-card" data-day="Day 1">
+        <div class="tls-icon">📦</div>
+        <div class="tls-title">Packed & Ready</div>
+        <div class="tls-desc">Your order is picked, packed and quality-checked</div>
+      </div>
+      <div class="tls-card" data-day="Day 2">
+        <div class="tls-icon">🏭</div>
+        <div class="tls-title">Dispatched</div>
+        <div class="tls-desc">Handed to our logistics partner for shipping</div>
+      </div>
+      <div class="tls-card" data-day="Day 3–4">
+        <div class="tls-icon">🚚</div>
+        <div class="tls-title">In Transit</div>
+        <div class="tls-desc">Your order is on the way to your city</div>
+      </div>
+      <div class="tls-card" data-day="Day 3–5">
+        <div class="tls-icon">🏠</div>
+        <div class="tls-title">Delivered</div>
+        <div class="tls-desc">Delivered to your door. Pay cash to agent.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Zones -->
+  <div class="ship-card">
+    <h2>Delivery <span>Zones</span></h2>
+    <p>Estimated delivery times by zone. All deliveries include a confirmation call before arrival.</p>
+    <div class="zone-grid">
+      <div class="zone-card">
+        <div class="zone-name">🏙️ Metro Cities</div>
+        <div class="zone-cities">Chennai, Mumbai, Delhi, Bengaluru, Hyderabad, Kolkata, Pune, Ahmedabad</div>
+        <div class="zone-days">3 Business Days</div>
+      </div>
+      <div class="zone-card">
+        <div class="zone-name">🌆 Tier 2 Cities</div>
+        <div class="zone-cities">Coimbatore, Jaipur, Lucknow, Nagpur, Surat, Kochi, Chandigarh, Bhopal</div>
+        <div class="zone-days">3–4 Business Days</div>
+      </div>
+      <div class="zone-card">
+        <div class="zone-name">🏘️ Tier 3 & Towns</div>
+        <div class="zone-cities">Smaller cities, towns and semi-urban areas across all states</div>
+        <div class="zone-days">4–5 Business Days</div>
+      </div>
+      <div class="zone-card">
+        <div class="zone-name">🏕️ Remote Areas</div>
+        <div class="zone-cities">Hilly regions, island territories, and special category zones</div>
+        <div class="zone-days">5–8 Business Days</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COD Info -->
+  <div class="ship-card">
+    <h2>Cash on <span>Delivery</span></h2>
+    <p>COD is available on all serviceable pin codes across India. Here's what you should know:</p>
+    <ul style="color:var(--text);font-size:14px;line-height:2;padding-left:20px;">
+      <li>Keep the <strong style="color:var(--white);">exact amount</strong> ready to avoid delay during delivery</li>
+      <li>Our delivery agent will call you <strong style="color:var(--white);">30–60 minutes</strong> before arriving</li>
+      <li>Do not pay until you have inspected the package and are satisfied</li>
+      <li>A digital receipt will be sent to your phone number after payment</li>
+      <li>Do not refuse delivery without a valid reason — re-delivery charges may apply</li>
+    </ul>
+  </div>
+
+  <!-- FAQ -->
+  <div class="ship-card">
+    <h2>Shipping <span>FAQs</span></h2>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <details><summary style="cursor:pointer;font-weight:700;color:var(--white);font-size:14px;padding:4px 0;">Can I change my delivery address after placing the order?</summary><p style="color:var(--text);font-size:13px;line-height:1.7;margin-top:10px;">Address changes can be made within 2 hours of placing the order by calling our support team. After dispatch, changes are not possible.</p></details>
+      <details><summary style="cursor:pointer;font-weight:700;color:var(--white);font-size:14px;padding:4px 0;">What if I miss the delivery?</summary><p style="color:var(--text);font-size:13px;line-height:1.7;margin-top:10px;">Our delivery agent will attempt delivery twice. If both attempts fail, the order is returned to our warehouse. Please contact us to reschedule.</p></details>
+      <details><summary style="cursor:pointer;font-weight:700;color:var(--white);font-size:14px;padding:4px 0;">Is shipping available to all states in India?</summary><p style="color:var(--text);font-size:13px;line-height:1.7;margin-top:10px;">We deliver to all major states and union territories. Some remote areas in J&K, Northeast, and island territories may have limited serviceability.</p></details>
+      <details><summary style="cursor:pointer;font-weight:700;color:var(--white);font-size:14px;padding:4px 0;">Do you ship internationally?</summary><p style="color:var(--text);font-size:13px;line-height:1.7;margin-top:10px;">Currently, we only ship within India. International shipping is not available at this time.</p></details>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div style="text-align:center;padding:24px 0;">
+    <a href="index.html" class="btn-primary" style="margin-right:12px;">Shop Now →</a>
+    <a href="track-order.html" style="background:none;border:2px solid var(--gold);color:var(--gold);padding:13px 28px;border-radius:10px;font-family:'Outfit',sans-serif;font-size:15px;font-weight:700;text-decoration:none;display:inline-block;transition:all .2s;" onmouseover="this.style.background='var(--gold)';this.style.color='var(--black)'" onmouseout="this.style.background='none';this.style.color='var(--gold)'">📦 Track Order</a>
+  </div>
+
+</div>
+
+<div id="footerMount"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script src="orderdata.store.js"></script>
+<script src="app.js"></script>
+<script>
+  document.getElementById('navLogo').innerHTML = navLogoSVG();
+  document.getElementById('footerMount').innerHTML = footerHTML();
+</script>
+</body>
+</html>

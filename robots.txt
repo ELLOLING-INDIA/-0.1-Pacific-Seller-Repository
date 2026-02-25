@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /cart.html
+Disallow: /checkout.html
+Disallow: /thankyou.html
+Disallow: /pacificseller.admin.html
+
+Sitemap: https://pacificsellers.in/sitemap.xml

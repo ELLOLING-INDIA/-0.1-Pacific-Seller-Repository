@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us – Pacific Seller's | Chennai, India</title>
+<meta name="description" content="Get in touch with Pacific Seller's for product queries, partnership enquiries or support. Call +91 73057 92178 or email info@pacificsellers.in.">
+<meta name="keywords" content="pacific sellers contact, ecommerce support india, contact seller, chennai ecommerce help">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://pacificsellers.in/contact.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Contact Pacific Seller's">
+<meta property="og:description" content="Reach out to Pacific Seller's for any queries, support or partnership enquiries.">
+<meta property="og:url" content="https://pacificsellers.in/contact.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contact Pacific Seller's",
+  "url": "https://pacificsellers.in/contact.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Pacific Seller's",
+    "url": "https://pacificsellers.in/",
+    "telephone": "+91-73057-92178",
+    "email": "info@pacificsellers.in",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Chennai",
+      "addressRegion": "Tamil Nadu",
+      "addressCountry": "IN"
+    }
+  }
+}
+</script>
+<link rel="stylesheet" href="style.css">
+<style>
+  .contact-wrap { max-width: 1100px; margin: 0 auto; padding: 60px 40px; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 420px; gap: 32px; }
+  .contact-info-cards { display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px; }
+  .contact-info-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px 22px; display: flex; align-items: flex-start; gap: 16px; transition: all .2s; }
+  .contact-info-card:hover { border-color: rgba(245,197,24,0.4); transform: translateX(4px); }
+  .contact-icon { font-size: 28px; flex-shrink: 0; }
+  .contact-info-label { font-size: 10px; font-weight: 700; color: var(--gray); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 4px; }
+  .contact-info-value { font-size: 15px; font-weight: 600; color: var(--white); }
+  .contact-info-sub { font-size: 12px; color: var(--gray); margin-top: 2px; }
+  .contact-form-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 32px; position: sticky; top: 85px; }
+  .contact-form-title { font-family: 'Bebas Neue', sans-serif; font-size: 24px; color: var(--white); letter-spacing: 1px; margin-bottom: 6px; }
+  .contact-form-title span { color: var(--gold); }
+  .contact-form-sub { font-size: 13px; color: var(--gray); margin-bottom: 22px; }
+  .cf-group { margin-bottom: 14px; }
+  .cf-group label { display: block; font-size: 11px; font-weight: 700; color: var(--gray); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
+  .cf-group input, .cf-group select, .cf-group textarea { width: 100%; background: var(--darker); border: 1px solid var(--border); color: var(--white); padding: 11px 14px; border-radius: 9px; font-family: 'Outfit', sans-serif; font-size: 14px; outline: none; transition: border-color .2s; }
+  .cf-group input:focus, .cf-group textarea:focus, .cf-group select:focus { border-color: var(--gold); }
+  .cf-group textarea { resize: vertical; min-height: 100px; }
+  .hours-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .hour-row { background: var(--darker); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; }
+  .hour-day { font-size: 12px; font-weight: 700; color: var(--white); margin-bottom: 2px; }
+  .hour-time { font-size: 12px; color: var(--gold); }
+  .map-placeholder { background: linear-gradient(135deg, var(--card), var(--darker)); border: 1px solid var(--border); border-radius: 16px; padding: 48px; text-align: center; margin-top: 20px; }
+  .map-placeholder .map-icon { font-size: 48px; margin-bottom: 12px; }
+  .map-placeholder h3 { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--white); margin-bottom: 6px; }
+  .map-placeholder p { color: var(--gray); font-size: 13px; }
+  .form-success-inline { background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.3); color: #4ade80; padding: 16px; border-radius: 10px; text-align: center; font-size: 14px; font-weight: 600; display: none; }
+  .form-success-inline.show { display: block; }
+  @media (max-width: 900px) {
+    .contact-grid { grid-template-columns: 1fr; }
+    .contact-form-card { position: static; }
+    .contact-wrap { padding: 40px 16px; }
+  }
+  @media (max-width: 480px) {
+    .hours-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="toast" id="toast"></div>
+
+<nav>
+  <a class="nav-logo" href="index.html" id="navLogo"></a>
+  <div class="nav-links">
+    <a class="nav-btn" href="index.html">🏠 Products</a>
+    <a class="nav-btn" href="manufacturer.html">🏭 Manufacturer</a>
+    <a class="cart-btn" href="cart.html">🛒 Cart <span class="cart-count" id="cartCount">0</span></a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero" style="padding:60px 40px;">
+  <div class="hero-tagline"><span>Get In</span> Touch</div>
+  <p class="hero-sub">Have a question, need support, or want to partner with us? We're here for you Mon–Sat, 9AM–6PM.</p>
+  <div class="hero-badges">
+    <div class="badge">📞 <span>+91 73057 92178</span></div>
+    <div class="badge">📧 <span>info@pacificsellers.in</span></div>
+    <div class="badge">⏰ Mon–Sat <span>9AM–6PM</span></div>
+  </div>
+</div>
+
+<div class="contact-wrap">
+  <div class="contact-grid">
+
+    <!-- LEFT: Info -->
+    <div>
+      <div class="section-title" style="margin-bottom:24px;">Contact <span>Information</span></div>
+      <div class="contact-info-cards">
+        <div class="contact-info-card">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-info-label">Phone</div>
+            <div class="contact-info-value">+91 73057 92178</div>
+            <div class="contact-info-sub">Available Mon–Sat, 9AM–6PM IST</div>
+          </div>
+        </div>
+        <div class="contact-info-card">
+          <div class="contact-icon">📧</div>
+          <div>
+            <div class="contact-info-label">Email</div>
+            <div class="contact-info-value">info@pacificsellers.in</div>
+            <div class="contact-info-sub">We respond within 1 business day</div>
+          </div>
+        </div>
+        <div class="contact-info-card">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-info-label">Office</div>
+            <div class="contact-info-value">Chennai, Tamil Nadu</div>
+            <div class="contact-info-sub">India — 600001</div>
+          </div>
+        </div>
+        <div class="contact-info-card">
+          <div class="contact-icon">💬</div>
+          <div>
+            <div class="contact-info-label">WhatsApp</div>
+            <div class="contact-info-value">+91 73057 92178</div>
+            <div class="contact-info-sub">Quick responses via WhatsApp</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-title" style="font-size:22px;margin-bottom:16px;">Business <span>Hours</span></div>
+      <div class="hours-grid" style="margin-bottom:32px;">
+        <div class="hour-row"><div class="hour-day">Monday – Friday</div><div class="hour-time">9:00 AM – 6:00 PM</div></div>
+        <div class="hour-row"><div class="hour-day">Saturday</div><div class="hour-time">9:00 AM – 2:00 PM</div></div>
+        <div class="hour-row"><div class="hour-day">Sunday</div><div class="hour-time" style="color:var(--gray);">Closed</div></div>
+        <div class="hour-row"><div class="hour-day">Public Holidays</div><div class="hour-time" style="color:var(--gray);">Closed</div></div>
+      </div>
+
+      <div class="section-title" style="font-size:22px;margin-bottom:16px;">Commonly <span>Asked</span></div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <details class="checkout-card" style="margin-bottom:0;">
+          <summary style="cursor:pointer;font-weight:700;color:var(--white);font-size:14px;">How do I track my order?</summary>
+          <p style="color:var(--text);line-height:1.7;margin-top:10px;font-size:13px;">Once your order is confirmed, our logistics team will contact you on your registered phone number with tracking details.</p>
+        </details>
+        <details class="checkout-card" style="margin-bottom:0;">
+          <summary style="cursor:pointer;font-weight:700;color:var(--white);font-size:14px;">How can I become a manufacturing partner?</summary>
+          <p style="color:var(--text);line-height:1.7;margin-top:10px;font-size:13px;">Visit our <a href="manufacturer.html" style="color:var(--gold);">Manufacturer Registration</a> page, fill out the form, and our team will reach out within 2 business days.</p>
+        </details>
+        <details class="checkout-card" style="margin-bottom:0;">
+          <summary style="cursor:pointer;font-weight:700;color:var(--white);font-size:14px;">What is your return policy?</summary>
+          <p style="color:var(--text);line-height:1.7;margin-top:10px;font-size:13px;">We accept returns within 7 days for defective or wrong products. Please <a href="return-policy.html" style="color:var(--gold);">see our Return Policy</a> for details.</p>
+        </details>
+      </div>
+
+      <div class="map-placeholder">
+        <div class="map-icon">🗺️</div>
+        <h3>Chennai, Tamil Nadu</h3>
+        <p>Pacific Seller's · India — serving manufacturers and customers nationwide.</p>
+      </div>
+    </div>
+
+    <!-- RIGHT: Form -->
+    <div>
+      <div class="contact-form-card">
+        <div class="contact-form-title">Send Us a <span>Message</span></div>
+        <p class="contact-form-sub">Fill the form and we'll get back to you within 1 business day.</p>
+        <div class="form-success-inline" id="contactSuccess">✅ Message sent! We'll reply within 1 business day.</div>
+        <div id="contactFormWrap">
+          <div class="cf-group">
+            <label>Your Name *</label>
+            <input type="text" id="cf_name" placeholder="Full name" required>
+          </div>
+          <div class="cf-group">
+            <label>Phone Number *</label>
+            <input type="tel" id="cf_phone" placeholder="+91 98765 43210" required>
+          </div>
+          <div class="cf-group">
+            <label>Email Address</label>
+            <input type="email" id="cf_email" placeholder="email@example.com">
+          </div>
+          <div class="cf-group">
+            <label>Subject *</label>
+            <select id="cf_subject">
+              <option value="">Select a topic</option>
+              <option>Order Query</option>
+              <option>Return / Refund</option>
+              <option>Manufacturing Partnership</option>
+              <option>Product Enquiry</option>
+              <option>Shipping Issue</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="cf-group">
+            <label>Message *</label>
+            <textarea id="cf_message" placeholder="Describe your query in detail..."></textarea>
+          </div>
+          <button class="btn-primary" onclick="submitContact()" style="margin-top:4px;">Send Message →</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="footerMount"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script src="orderdata.store.js"></script>
+<script src="app.js"></script>
+<script>
+  document.getElementById('navLogo').innerHTML = navLogoSVG();
+  document.getElementById('footerMount').innerHTML = footerHTML();
+
+  function submitContact() {
+    const name = document.getElementById('cf_name').value.trim();
+    const phone = document.getElementById('cf_phone').value.trim();
+    const subject = document.getElementById('cf_subject').value;
+    const message = document.getElementById('cf_message').value.trim();
+    if (!name || !phone || !subject || !message) { showToast('⚠️ Please fill all required fields'); return; }
+
+    // Save to localStorage for admin view
+    const enquiries = JSON.parse(localStorage.getItem('ps_contact_enquiries') || '[]');
+    enquiries.push({ name, phone, email: document.getElementById('cf_email').value, subject, message, date: new Date().toISOString().split('T')[0] });
+    localStorage.setItem('ps_contact_enquiries', JSON.stringify(enquiries));
+
+    document.getElementById('contactFormWrap').style.display = 'none';
+    document.getElementById('contactSuccess').classList.add('show');
+    showToast('✅ Message sent!');
+  }
+</script>
+</body>
+</html>
